@@ -36,9 +36,9 @@ export async function POST(req: NextRequest) {
         // },
         auto_return: "approved",
         back_urls: {
-          success: `${process.env.NEXT_PUBLIC_APP_URL}/api/mercado-pago/peding`,
-          failure: `${process.env.NEXT_PUBLIC_APP_URL}/api/mercado-pago/peding`,
-          pending: `${process.env.NEXT_PUBLIC_APP_URL}/api/mercado-pago/peding`,
+          success: `${req.headers.get("origin")}/api/mercado-pago/peding`,
+          failure: `${req.headers.get("origin")}/api/mercado-pago/peding`,
+          pending: `${req.headers.get("origin")}/api/mercado-pago/peding`,
         }
       },
     })
