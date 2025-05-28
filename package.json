@@ -1,0 +1,35 @@
+{
+  "name": "template-saas",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@auth/firebase-adapter": "^2.9.1",
+    "@stripe/stripe-js": "^7.3.0",
+    "firebase-admin": "^12.6.0",
+    "next": "15.2.1",
+    "next-auth": "^5.0.0-beta.28",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "stripe": "^18.1.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@rocketseat/eslint-config": "^2.2.2",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.27.0",
+    "eslint-config-next": "15.2.1",
+    "prettier": "3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
