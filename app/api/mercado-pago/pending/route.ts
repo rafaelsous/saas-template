@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
     });
 
     if (paymentInfo.status === "approved" || paymentInfo.date_approved !== null) {
-      return NextResponse.redirect(new URL(`success`, req.url));
+      return NextResponse.redirect(new URL(`/success`, req.url));
     }
 
     return NextResponse.redirect(new URL(`/`, req.url));
