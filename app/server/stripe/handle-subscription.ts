@@ -1,15 +1,17 @@
+import { EmailTemplate } from "@/app/components/email-template";
 import { db } from "@/app/lib/firebase";
+import resend from "@/app/lib/resend";
 import Stripe from "stripe";
 
 export async function handleStripeSubscription(event: Stripe.CheckoutSessionCompletedEvent) {
   if (event.data.object.payment_status === "paid") {
-    console.log("Payment has been made successful")
-
     const metadata = event.data.object.metadata
     const userId = metadata?.userId
+    const userEmail = event.data.object.customer_email
+    const username = event.data.object.customer_details?.name
 
-    if (!userId) {
-      console.log("User ID not found")
+    if (!userId || !userEmail || !username) {
+      console.log("User ID or email not found")
       return
     }
 
@@ -17,5 +19,18 @@ export async function handleStripeSubscription(event: Stripe.CheckoutSessionComp
       stripeSubscriptionId: event.data.object.subscription,
       subscriptionStatus: "active"
     })
+
+    const { data, error } = await resend.emails.send({
+      from: 'Acme <me@rafaelsousa.dev.br>',
+      to: [userEmail],
+      subject: 'Welcome',
+      react: EmailTemplate({ firstName: username }),
+    });
+
+    if (error) {
+      console.log(error)
+    }
+
+    console.log(data)
   }
 }
